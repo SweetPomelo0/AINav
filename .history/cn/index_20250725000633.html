@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="viggo" />
+    <title>Cathy的网址导航</title>
+    <meta name="keywords" content="Cathy的网址导航,收集工作中常用网址" />
+    <meta name="description" content="Cathy的网址导航,收集工作中常用网址" />
+    <link rel="shortcut icon" href="../assets/images/favicon.png" />
+    <link
+      rel="stylesheet"
+      href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/css/fonts/linecons/css/linecons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/css/fonts/fontawesome/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="../assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="../assets/css/xenon-core.css" />
+    <link rel="stylesheet" href="../assets/css/xenon-components.css" />
+    <link rel="stylesheet" href="../assets/css/xenon-skins.css" />
+    <link rel="stylesheet" href="../assets/css/nav.css" />
+    <style>
+      /* 自定义logo文字样式 */
+      .logo-text {
+        text-decoration: none !important;
+        display: block;
+      }
+      
+      .logo-title {
+        background: linear-gradient(135deg, #000000 0%, #000000 50%, #000000 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-size: 22px;
+        font-weight: 600;
+        font-family: 'Microsoft YaHei', 'PingFang SC', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+        text-decoration: none;
+        display: block;
+        line-height: 1.3;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+        text-align: center;
+        width: 100%;
+        /* 调整上下间距 */
+        padding: 5px 0;
+      }
+      
+      .logo-title-collapsed {
+         color: #ffffff;
+         font-size: 22px;
+         font-weight: 700;
+         font-family: 'Microsoft YaHei', 'PingFang SC', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+         text-decoration: none;
+         display: inline-block;
+         line-height: 1;
+         text-align: center;
+         width: 42px;
+         height: 42px;
+         line-height: 42px;
+         background: linear-gradient(135deg, #000000 0%, #000000 50%, #000000 100%);
+         border-radius: 12px;
+         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+         box-shadow: 0 4px 12px rgba(30, 136, 229, 0.3);
+         border: 2px solid rgba(255, 255, 255, 0.1);
+       }
+      
+      
+      /* 确保logo容器样式 */
+       .sidebar-menu .logo-env .logo {
+         text-align: center !important;
+         width: 100% !important;
+         float: none !important;
+         display: flex !important;
+         justify-content: center !important;
+         align-items: center !important;
+       }
+       
+       /* 添加微妙的发光效果 
+       .logo-title::before {
+         content: '';
+         position: absolute;
+         top: 0;
+         left: 0;
+         right: 0;
+         bottom: 0;
+         background: linear-gradient(135deg, rgba(199, 129, 191, 0.1) 0%, rgba(199, 129, 191, 0.1) 100%);
+         border-radius: 8px;
+         opacity: 0;
+         transition: opacity 0.3s ease;
+         z-index: -1;
+       }*/
+       
+       .logo-text:hover .logo-title::before {
+         opacity: 1;
+       }
+       
+       /* 为logo文字添加相对定位 */
+       .logo-title {
+         position: relative;
+       }
+       
+       /* 浅色侧边栏主题样式 */
+       .sidebar-menu {
+         background: #f8f9fa !important;
+         border-right: 1px solid #e9ecef;
+         box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+       }
+       
+       .sidebar-menu .logo-env {
+         background: #ffffff;
+         border-bottom: 1px solid #e9ecef !important;
+         height: 78px;
+       }
+       
+       .sidebar-menu .main-menu a {
+         color: #495057 !important;
+         border-bottom: 1px solid #e9ecef !important;
+         transition: all 0.3s ease;
+       }
+       
+       .sidebar-menu .main-menu a:hover {
+         color: #007bff !important;
+         background: #f1f3f4;
+         padding-left: 15px;
+         border-left: 3px solid #007bff;
+       }
+       
+       .sidebar-menu .main-menu li.active > a {
+         color: #007bff !important;
+         background: #e3f2fd;
+         border-left: 3px solid #007bff;
+         font-weight: 500;
+       }
+       
+       .sidebar-menu .main-menu a > i {
+         color: #6c757d;
+       }
+       
+       .sidebar-menu .main-menu a:hover > i,
+       .sidebar-menu .main-menu li.active > a > i {
+         color: #007bff;
+       }
+       
+       .sidebar-menu .main-menu li.has-sub > a:before {
+         color: #6c757d !important;
+       }
+       
+       .sidebar-menu .main-menu li.has-sub:hover > a:before,
+       .sidebar-menu .main-menu li.has-sub.active > a:before {
+         color: #007bff !important;
+       }
+       
+       /* 子菜单样式 */
+       .sidebar-menu .main-menu ul li a {
+         color: #6c757d !important;
+         padding-left: 35px;
+         font-size: 13px;
+       }
+       
+       .sidebar-menu .main-menu ul li a:hover {
+         color: #007bff !important;
+         background: #f8f9fa;
+         padding-left: 45px;
+       }
+       
+       .sidebar-menu .main-menu ul li.active > a {
+         color: #007bff !important;
+         background: #e3f2fd;
+         font-weight: 500;
+       }
+       
+       /* 标签样式调整 */
+       .sidebar-menu .main-menu .label {
+         background: #28a745;
+         color: white;
+       }
+       
+       .sidebar-menu .main-menu .label-pink {
+         background: #e91e63;
+       }
+       
+       .sidebar-menu .main-menu .label-Primary {
+         background: #007bff;
+       }
+    </style>
+    <script src="../assets/js/jquery-1.11.1.min.js"></script>
+  </head>
+
+  <body class="page-body">
+    <!-- skin-white -->
+    <div class="page-container">
+      <div class="sidebar-menu toggle-others fixed collapsed">
+        <div class="sidebar-menu-inner">
+          <header class="logo-env">
+            <!-- logo -->
+            <div class="logo">
+              <a href="index.html" class="logo-expanded logo-text">
+                <span class="logo-title">Cathy的网址导航</span>
+              </a>
+              <a href="index.html" class="logo-collapsed logo-text">
+                <span class="logo-title-collapsed">C</span>
+              </a>
+            </div>
+
+          </header>
+          <ul id="main-menu" class="main-menu">
+            <li>
+              <a href="#常用推荐" class="smooth">
+                <i class="linecons-star"></i>
+                <span class="title">常用推荐</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="#AI工具" class="smooth">
+                <i class="linecons-doc"></i>
+                <span class="title"> AI 工具</span>
+              </a>
+            </li>
+
+             <li>
+              <a href="#竞品官网" class="smooth">
+                <i <svg t="1753373159889" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1106" width="200" height="200"><path d="M880.17 420.74a26.45 26.45 0 0 0-16.97-17.02l-180.59-59.03a76.107 76.107 0 0 1-36.8-26.09L532.66 170.79c-9.72-11.59-26.98-13.12-38.56-3.4a27.998 27.998 0 0 0-3.4 3.4L377.22 318.65a76.127 76.127 0 0 1-36.75 26.02l-180.63 59.04c-13.87 4.54-21.45 19.45-16.91 33.32 0.88 2.66 2.15 5.17 3.82 7.42l109.34 149.4a76.06 76.06 0 0 1 14.69 44.11l2.05 182.94c0.14 14.59 12.06 26.32 26.65 26.18 2.52-0.02 5.03-0.4 7.42-1.14l182.46-55.47a76.119 76.119 0 0 1 44.29 0l182.46 55.47c2.49 0.74 5.06 1.1 7.67 1.1 14.48 0 26.28-11.66 26.42-26.16l2.05-182.94c0.18-15.88 5.32-31.3 14.69-44.11l109.34-149.4c5.03-6.83 6.44-15.65 3.85-23.73" fill="#FFBE3B" p-id="1107"></path><path d="M721.8 859.56c-3.82 0-7.59-0.54-11.21-1.62l-182.55-55.49a63.449 63.449 0 0 0-37.02 0l-132.19 40.18c-6.61 2.01-13.59-1.72-15.59-8.32-2.01-6.61 1.72-13.59 8.32-15.6l132.19-40.18c16.86-5.13 34.69-5.13 51.56 0L717.77 834c1.23 0.36 2.62 0.56 4.03 0.56 7.6 0 13.85-6.18 13.92-13.78l0.6-53.32c0.08-6.85 5.66-12.36 12.5-12.36h0.14c6.9 0.08 12.44 5.74 12.36 12.64l-0.6 53.3c-0.21 21.23-17.67 38.52-38.92 38.52zM861.2 416.22c-1.29 0-2.6-0.2-3.89-0.62l-180.59-59.03c-6.56-2.14-10.14-9.2-8-15.76 2.14-6.56 9.2-10.14 15.77-8l180.59 59.03c6.56 2.14 10.14 9.2 8 15.76-1.72 5.27-6.62 8.62-11.88 8.62z" p-id="1108"></path><path d="M538.88 494.36a73.06 104.51 0 1 0 146.12 0 73.06 104.51 0 1 0-146.12 0Z" fill="#FFFFFF" p-id="1109"></path><path d="M547.59 498.87a51.56 81.78 0 1 0 103.12 0 51.56 81.78 0 1 0-103.12 0Z" p-id="1110"></path><path d="M334.85 499.8a73.06 104.51 0 1 0 146.12 0 73.06 104.51 0 1 0-146.12 0Z" fill="#FFFFFF" p-id="1111"></path><path d="M344.34 498.87a51.56 81.78 0 1 0 103.12 0 51.56 81.78 0 1 0-103.12 0Z" p-id="1112"></path><path d="M548.06 646c6.55 0 11.44 5.96 10.26 12.41-4.84 26.3-24.74 46.01-48.56 46.01-23.82 0-43.72-19.71-48.56-46.01-1.19-6.45 3.71-12.41 10.26-12.41h76.6z" p-id="1113"></path></svg>></i>
+                <span class="title"> 竞品官网</span>
+              </a>
+            </li>
+             
+            <li>
+              <a href="about.html">
+                <i class="linecons-heart"></i>
+                <span class="tooltip-blue">关于本站</span>
+                <!-- <span class="label label-Primary pull-right hidden-collapsed"
+                  > </span> -->
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+      <div class="main-content">
+        <nav class="navbar user-info-navbar" role="navigation">
+          <!-- User Info, Notifications and Menu Bar -->
+          <!-- Left links for user info navbar -->
+          <ul class="user-info-menu left-links list-inline list-unstyled">
+            <li class="hidden-sm hidden-xs">
+              <a href="#" data-toggle="sidebar">
+                <i class="fa-bars"></i>
+              </a>
+            </li>
+        </nav>
+
+        <!-- 常用推荐 -->
+        <h4 class="text-gray">
+          <i class="linecons-tag" style="margin-right: 7px" id="常用推荐"></i>常用推荐
+        </h4>
+        <div class="row">
+
+          <!-- ChatGPT -->
+          <div class="col-sm-3">
+                    <div class="xe-widget xe-conversations box2 label-info" onclick="window.open('https://chatgpt.com/', '_blank')" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="https://chatgpt.com/">
+                        <div class="xe-comment-entry">
+                            <a class="xe-user-img">
+                                <img data-src="../assets/images/logos/chatgpt.png" class="lozad img-circle" width="40">
+                            </a>
+                            <div class="xe-comment">
+                                <a href="#" class="xe-user-name overflowClip_1">
+                                    <strong>ChatGPT</strong>
+                                </a>
+                                <p class="overflowClip_2">AI问答 翻译 写作 代码生成</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          
+          <!-- Perplexity -->
+             <div class="col-sm-3">
+                    <div class="xe-widget xe-conversations box2 label-info" onclick="window.open('https://www.perplexity.ai/', '_blank')" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="https://www.perplexity.ai/">
+                        <div class="xe-comment-entry">
+                            <a class="xe-user-img">
+                                <img data-src="../assets/images/logos/perplexity.png" class="lozad img-circle" width="40">
+                            </a>
+                            <div class="xe-comment">
+                                <a href="#" class="xe-user-name overflowClip_1">
+                                    <strong> Perplexity</strong>
+                                </a>
+                                <p class="overflowClip_2">AI搜索 比Google更智能</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>      
+
+          <!-- 沉浸式翻译 -->
+          <div class="col-sm-3">
+                    <div class="xe-widget xe-conversations box2 label-info" onclick="window.open('https://immersivetranslate.com/zh-Hans/?utm_source=ai-bot.cn', '_blank')" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="https://immersivetranslate.com/zh-Hans/?utm_source=ai-bot.cn">
+                        <div class="xe-comment-entry">
+                            <a class="xe-user-img">
+                                <img data-src="../assets/images/logos/immersive.ico" class="lozad img-circle" width="40">
+                            </a>
+                            <div class="xe-comment">
+                                <a href="#" class="xe-user-name overflowClip_1">
+                                    <strong> 沉浸式翻译</strong>
+                                </a>
+                                <p class="overflowClip_2">双语对照网页翻译插件</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                
+          <!-- DeepSeek -->
+          <div class="col-sm-3">
+                    <div class="xe-widget xe-conversations box2 label-info" onclick="window.open('https://deepseek.cn/', '_blank')" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="https://deepseek.cn/">
+                        <div class="xe-comment-entry">
+                            <a class="xe-user-img">
+                                <img data-src="../assets/images/logos/deepseek.png" class="lozad img-circle" width="40">
+                            </a>
+                            <div class="xe-comment">
+                                <a href="#" class="xe-user-name overflowClip_1">
+                                    <strong>DeepSeek</strong>
+                                </a>
+                                <p class="overflowClip_2">AI问答 翻译 写作</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+        </div>
+        <br />
+        <!-- END 常用推荐 -->
+        
+        <!-- AI工具 -->
+        <h4 class="text-gray">
+          <i class="linecons-tag" style="margin-right: 7px" id="AI工具"></i>AI 工具
+        </h4>
+        <div class="row">
+
+
+          <!-- Gemini -->
+          <div class="col-sm-3">
+                    <div class="xe-widget xe-conversations box2 label-info" onclick="window.open('https://gemini.google.com/app', '_blank')" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="https://gemini.google.com/app">
+                        <div class="xe-comment-entry">
+                            <a class="xe-user-img">
+                                <img data-src="../assets/images/logos/gemini.png" class="lozad img-circle" width="40">
+                            </a>
+                            <div class="xe-comment">
+                                <a href="#" class="xe-user-name overflowClip_1">
+                                    <strong> Gemini</strong>
+                                </a>
+                                <p class="overflowClip_2">AI问答 翻译 写作</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+          <!-- Claude -->
+          <div class="col-sm-3">
+                    <div class="xe-widget xe-conversations box2 label-info" onclick="window.open('https://claude.ai/', '_blank')" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="https://claude.ai/">
+                        <div class="xe-comment-entry">
+                            <a class="xe-user-img">
+                                <img data-src="../assets/images/logos/claude.png" class="lozad img-circle" width="40">
+                            </a>
+                            <div class="xe-comment">
+                                <a href="#" class="xe-user-name overflowClip_1">
+                                    <strong> Claude</strong>
+                                </a>
+                                <p class="overflowClip_2">代码生成 代码解释</p> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+          <!-- Cherry -->
+          <div class="col-sm-3">
+                    <div class="xe-widget xe-conversations box2 label-info" onclick="window.open('https://www.cherry-ai.com/?utm_source=ai-bot.cn', '_blank')" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="https://www.cherry-ai.com/">
+                        <div class="xe-comment-entry">
+                            <a class="xe-user-img">
+                                <img data-src="../assets/images/logos/cherry.png" class="lozad img-circle" width="40">
+                            </a>
+                            <div class="xe-comment">
+                                <a href="#" class="xe-user-name overflowClip_1">
+                                    <strong> Cherry</strong>
+                                </a>
+                                <p class="overflowClip_2">内置AI助手 PC应用</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+          <!-- Coze国际版 -->
+             <div class="col-sm-3">
+                    <div class="xe-widget xe-conversations box2 label-info" onclick="window.open('https://www.coze.com/', '_blank')" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="https://www.coze.com/">
+                        <div class="xe-comment-entry">
+                            <a class="xe-user-img">
+                                <img data-src="../assets/images/logos/coze.png" class="lozad img-circle" width="40">
+                            </a>
+                            <div class="xe-comment">
+                                <a href="#" class="xe-user-name overflowClip_1">
+                                    <strong> Coze国际版</strong>
+                                </a>
+                                <p class="overflowClip_2">AI智能体 支持GPT模型</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+             <!-- Coze国内版 -->
+             <div class="col-sm-3">
+                    <div class="xe-widget xe-conversations box2 label-info" onclick="window.open('https://space.coze.cn/', '_blank')" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="https://space.coze.cn/">
+                        <div class="xe-comment-entry">
+                            <a class="xe-user-img">
+                                <img data-src="../assets/images/logos/coze.png" class="lozad img-circle" width="40">
+                            </a>
+                            <div class="xe-comment">
+                                <a href="#" class="xe-user-name overflowClip_1">
+                                    <strong> Coze国内版</strong>
+                                </a>
+                                <p class="overflowClip_2">AI智能体 DeepSeek模型</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+              <!-- Kimi -->
+             <div class="col-sm-3">
+                    <div class="xe-widget xe-conversations box2 label-info" onclick="window.open('https://www.kimi.com/', '_blank')" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="https://www.kimi.com/">
+                        <div class="xe-comment-entry">
+                            <a class="xe-user-img">
+                                <img data-src="../assets/images/logos/kimi.ico" class="lozad img-circle" width="40">
+                            </a>
+                            <div class="xe-comment">
+                                <a href="#" class="xe-user-name overflowClip_1">
+                                    <strong> Kimi</strong>
+                                </a>
+                                <p class="overflowClip_2">Kimi K2 开源模型</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+              <!-- 豆包 -->
+             <div class="col-sm-3">
+                    <div class="xe-widget xe-conversations box2 label-info" onclick="window.open('https://www.doubao.com/', '_blank')" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="https://www.doubao.com/">
+                        <div class="xe-comment-entry">
+                            <a class="xe-user-img">
+                                <img data-src="../assets/images/logos/doubao.png" class="lozad img-circle" width="40">
+                            </a>
+                            <div class="xe-comment">
+                                <a href="#" class="xe-user-name overflowClip_1">
+                                    <strong> 豆包</strong>
+                                </a>
+                                <p class="overflowClip_2">写作 搜索 阅读</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 即梦 -->
+             <div class="col-sm-3">
+                    <div class="xe-widget xe-conversations box2 label-info" onclick="window.open('https://jimeng.jianying.com/', '_blank')" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="https://jimeng.jianying.com/">
+                        <div class="xe-comment-entry">
+                            <a class="xe-user-img">
+                                <img data-src="../assets/images/logos/jimeng.png" class="lozad img-circle" width="40">
+                            </a>
+                            <div class="xe-comment">
+                                <a href="#" class="xe-user-name overflowClip_1">
+                                    <strong> 即梦</strong>
+                                </a>
+                                <p class="overflowClip_2">AI生图 视频 国内可用 积分制</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <br />
+        <!-- END AI工具 -->
+<!--  -->
+
+        <br />
+
+        <footer class="main-footer sticky footer-type-1">
+          <div class="footer-inner">
+            <!-- Add your copyright text here -->
+            <div class="footer-text">
+              &copy; 2017-2025
+              <a href="../cn/about.html"><strong>Cathy的网址导航</strong></a> design by
+              <a href="https://www.viggoz.com" target="_blank"
+                ><strong>Cathy</strong></a
+              >
+              <!--  - Purchase for only <strong>23$</strong> -->
+            </div>
+            <!-- Go to Top Link, just add rel="go-top" to any link to add this functionality -->
+            <div class="go-up">
+              <a href="#" rel="go-top">
+                <i class="fa-angle-up"></i>
+              </a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <!-- 锚点平滑移动 -->
+    <script type="text/javascript">
+      $(document).ready(function () {
+        //img lazy loaded
+        const observer = lozad();
+        observer.observe();
+
+        $(document).on("click", ".has-sub", function () {
+          var _this = $(this);
+          if (!$(this).hasClass("expanded")) {
+            setTimeout(function () {
+              _this.find("ul").attr("style", "");
+            }, 300);
+          } else {
+            $(".has-sub ul").each(function (id, ele) {
+              var _that = $(this);
+              if (_this.find("ul")[0] != ele) {
+                setTimeout(function () {
+                  _that.attr("style", "");
+                }, 300);
+              }
+            });
+          }
+        });
+        $(".user-info-menu .hidden-sm").click(function () {
+          if ($(".sidebar-menu").hasClass("collapsed")) {
+            $(".has-sub.expanded > ul").attr("style", "");
+          } else {
+            $(".has-sub.expanded > ul").show();
+          }
+        });
+        $("#main-menu li ul li").click(function () {
+          $(this).siblings("li").removeClass("active"); // 删除其他兄弟元素的样式
+          $(this).addClass("active"); // 添加当前元素的样式
+        });
+        $("a.smooth").click(function (ev) {
+          ev.preventDefault();
+
+          public_vars.$mainMenu
+            .add(public_vars.$sidebarProfile)
+            .toggleClass("mobile-is-visible");
+          ps_destroy();
+          $("html, body").animate(
+            {
+              scrollTop: $($(this).attr("href")).offset().top - 30,
+            },
+            {
+              duration: 500,
+              easing: "swing",
+            }
+          );
+        });
+        return false;
+      });
+
+      var href = "";
+      var pos = 0;
+      $("a.smooth").click(function (e) {
+        $("#main-menu li").each(function () {
+          $(this).removeClass("active");
+        });
+        $(this).parent("li").addClass("active");
+        e.preventDefault();
+        href = $(this).attr("href");
+        pos = $(href).position().top - 30;
+      });
+    </script>
+    <!-- Bottom Scripts -->
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/TweenMax.min.js"></script>
+    <script src="../assets/js/resizeable.js"></script>
+    <script src="../assets/js/joinable.js"></script>
+    <script src="../assets/js/xenon-api.js"></script>
+    <script src="../assets/js/xenon-toggles.js"></script>
+    <!-- JavaScripts initializations and stuff -->
+    <script src="../assets/js/xenon-custom.js"></script>
+    <script src="../assets/js/lozad.js"></script>
+  </body>
+</html>
